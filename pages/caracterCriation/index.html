@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Personagem de RPG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Fundo escuro */
+            color: #e2e8f0; /* Texto claro */
+        }
+        .card {
+            background-color: #2d3748; /* Cor do cartão */
+            border-radius: 0.75rem; /* Cantos arredondados */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5); /* Sombra */
+        }
+        .input-field {
+            background-color: #4a5568; /* Fundo do campo de input */
+            border: 1px solid #2d3748; /* Borda do campo de input */
+            color: #e2e8f0; /* Cor do texto do input */
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem; /* Cantos arredondados menores */
+            width: 100%;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #ecc94b; /* Borda amarela ao focar */
+            box-shadow: 0 0 0 3px rgba(236, 201, 75, 0.5); /* Sombra amarela ao focar */
+        }
+        .section-title {
+            color: #ecc94b; /* Título da seção em amarelo */
+            font-weight: 700; /* Negrito */
+            font-size: 1.25rem; /* Tamanho do texto */
+            margin-bottom: 0.75rem;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    </body>
+    <div class="card w-full max-w-4xl p-8 space-y-6">
+        <h1 class="text-4xl font-bold text-center text-yellow-300 mb-8">Ficha de Personagem</h1>
+
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+            <div class="w-48 h-48 bg-gray-700 rounded-lg flex items-center justify-center overflow-hidden border-2 border-yellow-500 flex-shrink-0">
+                <img id="characterPhoto" src="https://placehold.co/192x192/4a5568/e2e8f0?text=Foto+do+Personagem" alt="Foto do Personagem" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-grow w-full">
+                <label for="characterName" class="block text-sm font-medium text-gray-300 mb-2">Nome do Personagem:</label>
+                <input type="text" id="characterName" class="input-field" placeholder="Ex: Sir Kaelen, o Justo">
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+                    <div>
+                        <label for="characterClass" class="block text-sm font-medium text-gray-300 mb-2">Classe:</label>
+                        <input type="text" id="characterClass" class="input-field" placeholder="Ex: Guerreiro">
+                    </div>
+                    <div>
+                        <label for="characterRace" class="block text-sm font-medium text-gray-300 mb-2">Raça:</label>
+                        <input type="text" id="characterRace" class="input-field" placeholder="Ex: Humano">
+                    </div>
+                    <div>
+                        <label for="characterAlignment" class="block text-sm font-medium text-gray-300 mb-2">Tendência:</label>
+                        <input type="text" id="characterAlignment" class="input-field" placeholder="Ex: Leal e Bom">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="section-title">Descrição / História</h2>
+            <textarea id="characterDescription" rows="5" class="input-field" placeholder="Escreva um breve histórico ou descrição do seu personagem..."></textarea>
+        </div>
+
+        <div>
+            <h2 class="section-title">Habilidades / Técnicas</h2>
+            <textarea id="characterSkills" rows="4" class="input-field" placeholder="Liste as habilidades e técnicas do seu personagem..."></textarea>
+        </div>
+
+        <div>
+            <h2 class="section-title">Equipamento / Inventário</h2>
+            <textarea id="characterEquipment" rows="4" class="input-field" placeholder="Liste o equipamento e itens do inventário do seu personagem..."></textarea>
+        </div>
+
+        <div class="text-center mt-6">
+            <label for="photoUpload" class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-lg cursor-pointer transition duration-300 ease-in-out transform hover:scale-105 shadow-md">
+                Carregar Foto
+            </label>
+            <input type="file" id="photoUpload" accept="image/*" class="hidden">
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('photoUpload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('characterPhoto').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
